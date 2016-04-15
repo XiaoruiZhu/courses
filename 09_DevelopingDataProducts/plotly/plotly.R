@@ -19,8 +19,22 @@ g <- ggplot(myData, aes(y = enrollment, x = class, fill = offering))
 g <- g + geom_bar(stat = "identity")
 g
 
+# get key 
+library(plotly)
+s <- 'ipd49cue04'
+Sys.setenv("plotly_username"="JeremyZhu")
+Sys.setenv("plotly_api_key"=s)
+
+plotly:::verify("JeremyZhu")
+plotly:::verify("ipd49cue04")
+
+plot_ly(mtcars, x = hp, y = mpg,
+        mode = "markers",
+        color = wt,
+        text=paste("Weight:", wt))
+
 ## Let's try to get it into plot.ly
-py <- plotly()
+py <- ggplotly()
 out <- py$ggplotly(g)
 out$response$url
 
